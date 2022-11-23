@@ -9,7 +9,7 @@ void main()
     while (1) {
         keyNum = martrixKey();
         if (keyNum) {
-            LCD_ShowChar(1, 1, keyNum);
+            LCD_ShowNum(1, 1, keyNum, 2);
         }
     }
 }

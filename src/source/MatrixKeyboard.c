@@ -4,7 +4,7 @@
 /**
  * 校验每列从上到下哪个键盘被按下
  * @param num 第几列，值从0开始
-*/
+ */
 unsigned char checkKeyNumber(unsigned char num)
 {
     unsigned char keyNumber = 0;
@@ -22,16 +22,14 @@ unsigned char checkKeyNumber(unsigned char num)
             ; // 检测是否松手
         Delayms(20);
         keyNumber = 5 + num;
-    } else if (P1_5 == 0)
-    { 
+    } else if (P1_5 == 0) {
         /* 看纵向第三个是否是0，也就是S9、S10、S11、S12键是否按下 */
         Delayms(20); // 取消按键抖动
         while (P1_6 == 0)
             ; // 检测是否松手
         Delayms(20);
         keyNumber = 9 + num;
-    } else if (P1_4 == 0)
-    { 
+    } else if (P1_4 == 0) {
         /* 看纵向第四个是否是0，也就是S13、S14、S15、S16键是否按下 */
         Delayms(20); // 取消按键抖动
         while (P1_6 == 0)
@@ -54,22 +52,20 @@ unsigned char martrixKey()
     横向第几个针脚为0，则按的就是指定纵向的从上到下第几个键
     */
     unsigned char num = 4;
-    while (num--)
-    {
-        P1   = 0xFF; // 先给P1八个针脚赋高电平，初始
-        switch (num)
-        {
-        case 1:
-            P1_3 = 0;
-            break;
-        case 2:
-            P1_2 = 0;
-        case 3:
-            P1_1 = 0;
-        case 4:
-            P1_0 = 0;
-        default:
-            break;
+    while (num--) {
+        P1 = 0xFF; // 先给P1八个针脚赋高电平，初始
+        switch (num) {
+            case 1:
+                P1_3 = 0;
+                break;
+            case 2:
+                P1_2 = 0;
+            case 3:
+                P1_1 = 0;
+            case 4:
+                P1_0 = 0;
+            default:
+                break;
         }
         keyNumber = checkKeyNumber(num);
     }
